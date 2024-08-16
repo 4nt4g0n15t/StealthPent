@@ -1,2 +1,0 @@
-#This file contains your target IPs and ports. Use the following format: <ip>:<port>
-

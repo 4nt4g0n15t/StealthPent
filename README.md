@@ -56,6 +56,7 @@ You can choose between **Standard** and **Paranoid** modes depending on the leve
 2. **Configure Your Targets**
 
 Add IP addresses and ports (for custom scans) to the config/targets.txt file in the format IP:Port.
+
 3. **Select and Run the Workflow**
 
 Choose your scan mode by running:

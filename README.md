@@ -17,22 +17,28 @@
 StealthPent/
 ├── README.md
 ├── config/
-│ └── targets.txt
+│   └── targets.txt
 ├── scripts/
-│ ├── standard/
-│ │ ├── scan_ports.sh
-│ │ ├── enumerate_services.sh
-│ │ ├── vulnerability_scan.sh
-│ │ ├── recon_network.sh
-│ │ ├── gather_osint.sh
-│ ├── paranoid/
-│ │ ├── scan_ports.sh
-│ │ ├── enumerate_services.sh
-│ │ ├── vulnerability_scan.sh
-│ │ ├── recon_network.sh
-│ │ ├── gather_osint.sh
+│   ├── standard/
+│   │   ├── scan_ports.sh
+│   │   ├── enumerate_services.sh
+│   │   ├── vulnerability_scan.sh
+│   │   ├── recon_network.sh
+│   │   └── gather_osint.sh
+│   ├── paranoid/
+│   │   ├── scan_ports.sh
+│   │   ├── enumerate_services.sh
+│   │   ├── vulnerability_scan.sh
+│   │   ├── recon_network.sh
+│   │   └── gather_osint.sh
+│   └── selected/
+│       ├── scan_ports.sh
+│       ├── enumerate_services.sh
+│       ├── vulnerability_scan.sh
+│       ├── recon_network.sh
+│       └── gather_osint.sh
 ├── results/
-│ └── scan_results/
+│   └── scan_results/
 ├── workflow.sh
 ├── select_mode.sh
 └── .gitignore

@@ -1,76 +1,126 @@
 # StealthPent
 
-**StealthPent** is an automated and stealthy penetration testing workflow designed to perform network reconnaissance and vulnerability assessment with minimal detection risk. Based on the Hactrics methodology, this tool focuses on stealth, efficiency, and effectiveness in gathering information and identifying potential vulnerabilities within a network.
+**StealthPent** is a network penetration testing toolkit designed for both speed and stealth. It provides two operational modes:
+- **Standard Mode**: Faster scans with less focus on evasion.
+- **Paranoid Mode**: Slower, highly stealthy scans to evade detection.
 
 ## Features
+- **Standard and Paranoid Modes**: Choose between faster scans or highly stealthy ones.
+- **Comprehensive Workflow**: Includes port scanning, service enumeration, vulnerability scanning, network recon, and OSINT gathering.
+- **Automation**: Use `workflow.sh` to automate the entire process.
+- **Flexibility**: Customizable scans with options to target all ports or specific ports.
 
-- **Stealth Scanning**: Executes scans with low-speed settings to reduce the chances of detection by IDS/IPS systems.
-- **Randomized Scanning**: Randomizes the order of IP addresses to prevent easy detection.
-- **Service Enumeration**: Gathers information about services running on open ports using a low-intensity approach.
-- **Vulnerability Scanning**: Identifies known vulnerabilities using stealthy techniques.
-- **Additional Recon Tools**: Incorporates various network reconnaissance tools for comprehensive information gathering.
-- **Flexible Scan Options**: Choose between scanning all ports or only custom-specified ports.
-- **Paranoid Mode**: Enhanced stealth scanning with additional techniques to evade detection.
+## Repository Structure
 
-## Project Structure
-
+```plaintext
 StealthPent/
-├── README.md
+│
 ├── config/
-│   └── targets.txt
+│   └── targets.txt            # List of IP:PORT targets for scanning
+│
+├── results/
+│   └── scan_results/          # Directory where scan results will be saved
+│
 ├── scripts/
-│   ├── standard/
+│   ├── standard/              # Scripts for standard mode (faster, less stealthy)
 │   │   ├── scan_ports.sh
 │   │   ├── enumerate_services.sh
 │   │   ├── vulnerability_scan.sh
 │   │   ├── recon_network.sh
 │   │   └── gather_osint.sh
-│   ├── paranoid/
-│   │   ├── scan_ports.sh
-│   │   ├── enumerate_services.sh
-│   │   ├── vulnerability_scan.sh
-│   │   ├── recon_network.sh
-│   │   └── gather_osint.sh
-│   └── selected/
+│   │
+│   └── paranoid/              # Scripts for paranoid mode (slower, more stealthy)
 │       ├── scan_ports.sh
 │       ├── enumerate_services.sh
 │       ├── vulnerability_scan.sh
 │       ├── recon_network.sh
 │       └── gather_osint.sh
-├── results/
-│   └── scan_results/
-├── workflow.sh
-├── select_mode.sh
-└── .gitignore
+│
+├── .gitignore                 # Specifies files and directories to ignore in version control
+├── README.md                  # Documentation for the project
+├── select_mode.sh             # Interactive script to choose mode and scan type
+└── workflow.sh                # Automates the entire workflow of scanning, enumeration, and OSINT
 
+```
+## Setup Instructions
+
+Clone the Repository:
+
+     git clone https://github.com/yourusername/StealthPent.git
+     cd StealthPent
+
+Configure Targets:
+
+     Edit config/targets.txt to list the IP addresses and ports you want to scan. Use the format IP:PORT (e.g.,        192.168.1.1:80).
 
 ## Usage
 
-### Selecting the Mode
+1. Using select_mode.sh
+Run this script to interactively choose between standard and paranoid modes and to select the type of scan (all ports or custom ports).
 
-You can choose between **Standard** and **Paranoid** modes depending on the level of stealth you require:
+Example Command:
 
-1. **Standard Mode**: Balanced between speed and stealth.
-2. **Paranoid Mode**: Maximum stealth with the slowest and most cautious scanning.
+      ./select_mode.sh
 
-### Running the Workflow
+Follow the prompts to select your desired mode and scan type.
 
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/yourusername/StealthPent.git
-   cd StealthPent
-2. **Configure Your Targets**
+2. Using workflow.sh
 
-Add IP addresses and ports (for custom scans) to the config/targets.txt file in the format IP:Port.
+   Automate the entire workflow for scanning, enumeration, and OSINT in one go.
 
-3. **Select and Run the Workflow**
+Example Commands:
 
-Choose your scan mode by running:
-bash
-Copy code
-./select_mode.sh
-Follow the prompts to select between Standard or Paranoid mode, and then the workflow will proceed with your chosen settings.
-Review the Results
+Standard mode with custom ports:
 
-Results are saved in the results/scan_results/ directory for analysis.
+     ./workflow.sh standard custom
+     
+Paranoid mode with all ports:
 
+     ./workflow.sh paranoid all
+
+
+3. Running Individual Scripts
+
+You can also run the individual scripts directly if you want more control.
+
+Standard Mode:
+                 
+      ./scripts/standard/scan_ports.sh custom
+      ./scripts/standard/enumerate_services.sh custom
+      ./scripts/standard/vulnerability_scan.sh custom
+      ./scripts/standard/recon_network.sh
+      ./scripts/standard/gather_osint.sh
+
+
+Paranoid Mode:
+
+      ./scripts/paranoid/scan_ports.sh all
+      ./scripts/paranoid/enumerate_services.sh all
+      ./scripts/paranoid/vulnerability_scan.sh all
+      ./scripts/paranoid/recon_network.sh
+      ./scripts/paranoid/gather_osint.sh
+
+Making the Scripts Executable
+Before running any of these scripts, ensure they have executable permissions. You can make a script executable with the following command:
+      
+      chmod +x scriptname.sh
+
+For example:
+      
+      chmod +x select_mode.sh
+      chmod +x workflow.sh
+      chmod +x scripts/standard/scan_ports.sh
+      chmod +x scripts/paranoid/scan_ports.sh
+
+## Dependencies 
+
+      sudo apt-get install -y nmap netcat whois curl dnsutils openssl wget
+
+
+## Contributing
+
+Fork the repository, create a new branch, make your changes, and open a pull request.
+
+## License
+
+This project is licensed under the MIT License.

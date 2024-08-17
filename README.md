@@ -1,58 +1,62 @@
-# Comprehensive Stealth Port Scanner with OS Fingerprinting and WHOIS Data Retrieval
+# StealthPent
 
-## Overview
-
-This tool performs stealthy port scanning, OS fingerprinting, and WHOIS data retrieval, providing comprehensive network insights. It can handle single or multiple IPs, scan custom or common ports, and save detailed reports.
+**StealthPent** is a stealth port scanning tool designed for comprehensive network analysis. It performs port scanning, OS fingerprinting, and WHOIS data retrieval, generating detailed reports.
 
 ## Features
 
-- **Stealth Scanning**: Minimize detection risk using fragmented packets, random delays, and IP spoofing.
-- **Service Enumeration**: Identify running services on open ports.
-- **OS Fingerprinting**: Analyze TCP/IP stack responses to deduce the target's operating system.
-- **WHOIS Data Retrieval**: Gather WHOIS information for each target IP.
-- **Detailed Reports**: Save results in well-structured reports with information on open ports, services, OS fingerprinting, and WHOIS data.
+- **Stealth Scanning**: Uses fragmented packets, randomized delays, and spoofed source IPs.
+- **Port Scanning**:
+  - Custom Ports: Specify a list of ports.
+  - Common Ports: Scan predefined commonly used ports.
+  - All Ports: Scan all possible ports (1-65535).
+- **OS Fingerprinting**: Identifies the likely operating system based on TCP/IP stack responses.
+- **WHOIS Data Retrieval**: Fetches WHOIS information for the target IP.
+- **Verbose Mode**: Provides real-time progress updates.
 
-## Usage
+## Installation
 
-### Direct IP Input
+Install the required dependencies with:
 
 ```bash
-python3 main.py -i 192.168.1.1 -p common -v
+pip install scapy whois
+```
+## Usage
 
-File Input (Multiple IPs)
+Scan a Single IP
 
-bash
+    python3 main.py -i <IP_ADDRESS> -p <PORTS> -v
 
-python3 main.py -f targets.txt -p all -v
+Scan Multiple IPs from a File
 
-Options
+    python3 main.py -f <TARGETS_FILE> -p <PORTS> -v
 
-    -i: Specify the target IP address.
-    -f: Specify the targets.txt file containing a list of IP addresses.
-    -p: Choose ports to scan: custom (user-defined), common, or all.
+## Options
+
+    -i: Target IP address.
+    -f: File containing a list of IP addresses (one per line).
+    -p: Ports to scan:
+        custom: Comma-separated list of ports (e.g., 22,80).
+        common: Predefined commonly used ports.
+        all: All ports (1-65535).
     -v: Enable verbose mode for real-time updates.
 
-Installation
 
-bash
+## Report
 
-pip install scapy python-whois asyncio
+Reports are saved in the reports/ directory with the format ip_timestamp.txt. Each report includes:
 
-Future Enhancements
+-Open ports and their services.
+-OS fingerprinting results.
+-WHOIS data for the target IP.
 
-    Vulnerability Scanning: Integrate vulnerability databases to identify potential security risks.
+#### Notes
 
-License
+    L3 Types Warning: Warnings about incompatible L3 types may appear. These can be safely ignored if they do not affect functionality.
 
-This project is licensed under the MIT License.
+### Future Enhancements
 
-vbnet
+-Service Enumeration: Identify services running on open ports.
+-Vulnerability Scanning: Integrate vulnerability databases to detect potential security issues.
 
 
-### Step 4: Finalizing the Project
-
-1. **Ensure the `reports/` directory exists** before running the tool, as it’s where the reports will be saved.
-2. **Test the project** thoroughly to catch any potential issues before deployment.
-
-This setup provides a complete, functional, and efficient port scanning tool with service enumeration, detailed reporting, and robust error handling.
-
+This `README.md` provides a straightforward overview of the project, including installation, usage, and report details, all in a clean and concise format.
